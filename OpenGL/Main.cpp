@@ -1,4 +1,5 @@
-
+#pragma comment (lib, "glfw3.lib")
+#pragma comment (lib, "opengl32.lib")
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
 #include<stb/stb_image.h>
@@ -123,8 +124,8 @@ int main()
 		if(!pause)
 		{
 			std::cout << glm::dot((s2.position - s1.position), (s2.position - s1.position))<<std::endl;
-			velocity1 = velocity1 + 0.03f * glm::normalize((s2.position - s1.position)) / std::max(glm::dot((s2.position - s1.position), (s2.position - s1.position)), mindist);
-			velocity1 = velocity1 + 0.03f * glm::normalize((s3.position - s1.position)) / std::max(glm::dot((s3.position - s1.position), (s3.position - s1.position)), mindist);
+			//velocity1 = velocity1 + 0.03f * glm::normalize((s2.position - s1.position)) / std::max(glm::dot((s2.position - s1.position), (s2.position - s1.position)), mindist);
+			//velocity1 = velocity1 + 0.03f * glm::normalize((s3.position - s1.position)) / std::max(glm::dot((s3.position - s1.position), (s3.position - s1.position)), mindist);
 			velocity2 = velocity2 + 0.03f * glm::normalize((s1.position - s2.position)) / std::max(glm::dot((s1.position - s2.position), (s1.position - s2.position)), mindist);
 			velocity2 = velocity2 + 0.01f * glm::normalize((s3.position - s2.position)) / std::max(glm::dot((s3.position - s2.position), (s3.position - s2.position)), mindist);
 			velocity3 = velocity3 + 0.03f * glm::normalize((s1.position - s3.position)) / std::max(glm::dot((s1.position - s3.position), (s1.position - s3.position)), mindist);
