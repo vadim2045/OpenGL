@@ -17,8 +17,6 @@ class Shader
 		
 		void Activate();
 		void Delete();
-
-
 };
 
 #endif

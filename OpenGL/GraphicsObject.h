@@ -14,7 +14,6 @@
 class GraphicsObject
 {
 public:
-	
 	VAO* vao;
 	void Draw(Shader& shader);
 };

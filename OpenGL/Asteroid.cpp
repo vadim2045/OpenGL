@@ -42,21 +42,23 @@ Asteroid::Asteroid(GLfloat radius, GLint precision, int colortype, int drawtype)
 		}
 
 	}
-	if (drawType == 0)for (int i = 0; i < sphere.triangles.size(); i += 3)
-	{
-		indices[i] = sphere.triangles[i];
-		indices[i + 1] = sphere.triangles[i + 1];
-		indices[i + 2] = sphere.triangles[i + 2];
-	}
-	else if (drawType == 1)for (int i = 0; i < sphere.triangles.size(); i += 3)
-	{
-		indices[i * 2] = sphere.triangles[i];
-		indices[i * 2 + 1] = sphere.triangles[i + 1];
-		indices[i * 2 + 2] = sphere.triangles[i];
-		indices[i * 2 + 3] = sphere.triangles[i + 2];
-		indices[i * 2 + 4] = sphere.triangles[i + 1];
-		indices[i * 2 + 5] = sphere.triangles[i + 2];
-	}
+	if (drawType == 0)
+		for (int i = 0; i < sphere.triangles.size(); i += 3)
+		{
+			indices[i] = sphere.triangles[i];
+			indices[i + 1] = sphere.triangles[i + 1];
+			indices[i + 2] = sphere.triangles[i + 2];
+		}
+	else if (drawType == 1)
+		for (int i = 0; i < sphere.triangles.size(); i += 3)
+		{
+			indices[i * 2] = sphere.triangles[i];
+			indices[i * 2 + 1] = sphere.triangles[i + 1];
+			indices[i * 2 + 2] = sphere.triangles[i];
+			indices[i * 2 + 3] = sphere.triangles[i + 2];
+			indices[i * 2 + 4] = sphere.triangles[i + 1];
+			indices[i * 2 + 5] = sphere.triangles[i + 2];
+		}
 	vao = new VAO();
 	vao->Bind();
 	vbo = new VBO(vertices, verticesSize * sizeof(GLfloat));
@@ -77,6 +79,6 @@ Asteroid::Asteroid(GLfloat radius, GLint precision, int colortype, int drawtype)
 void Asteroid::Draw(Shader& shader)
 {
 	vao->Bind();
-	if (drawType == 0)glDrawElements(GL_TRIANGLES, indicesSize, GL_UNSIGNED_INT, 0);
-	else if (drawType == 1)glDrawElements(GL_LINES, indicesSize, GL_UNSIGNED_INT, 0);
+	if (drawType == 0) glDrawElements(GL_TRIANGLES, indicesSize, GL_UNSIGNED_INT, 0);
+	else if (drawType == 1) glDrawElements(GL_LINES, indicesSize, GL_UNSIGNED_INT, 0);
 }

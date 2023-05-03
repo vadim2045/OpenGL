@@ -9,8 +9,8 @@ Sphere::Sphere(GLfloat radius,GLint precision,int colortype,int drawtype)
 	SphereStruct sphere = CreateSphere(0, 0, 0, radius, precision);
 
 	verticesSize = 3 * sphere.points.size();
-	if(drawType == 0)indicesSize = sphere.triangles.size();
-	else if(drawType == 1)indicesSize = 2 * sphere.triangles.size();
+	if(drawType == 0) indicesSize = sphere.triangles.size();
+	else if(drawType == 1) indicesSize = 2 * sphere.triangles.size();
 	GLfloat* vertices = new GLfloat[verticesSize];
 	GLuint* indices = new GLuint[indicesSize];
 	VBO* vbo;
@@ -40,22 +40,23 @@ Sphere::Sphere(GLfloat radius,GLint precision,int colortype,int drawtype)
 		vertices[i * 3 + 8] = sphere.points[i + 2] / radius;
 	}
 
-	if (drawType == 0)for (int i = 0; i < sphere.triangles.size(); i += 3)
-	{
-		indices[i] = sphere.triangles[i];
-		indices[i + 1] = sphere.triangles[i + 1];
-		indices[i + 2] = sphere.triangles[i + 2];
-	}
+	if (drawType == 0)
+		for (int i = 0; i < sphere.triangles.size(); i += 3)
+		{
+			indices[i] = sphere.triangles[i];
+			indices[i + 1] = sphere.triangles[i + 1];
+			indices[i + 2] = sphere.triangles[i + 2];
+		}
 	else if(drawType == 1)
-	for (int i = 0; i < sphere.triangles.size(); i += 3)
-	{
-		indices[i * 2] = sphere.triangles[i];
-		indices[i * 2 + 1] = sphere.triangles[i + 1];
-		indices[i * 2 + 2] = sphere.triangles[i];
-		indices[i * 2 + 3] = sphere.triangles[i + 2];
-		indices[i * 2 + 4] = sphere.triangles[i + 1];
-		indices[i * 2 + 5] = sphere.triangles[i + 2];
-	}
+		for (int i = 0; i < sphere.triangles.size(); i += 3)
+		{
+			indices[i * 2] = sphere.triangles[i];
+			indices[i * 2 + 1] = sphere.triangles[i + 1];
+			indices[i * 2 + 2] = sphere.triangles[i];
+			indices[i * 2 + 3] = sphere.triangles[i + 2];
+			indices[i * 2 + 4] = sphere.triangles[i + 1];
+			indices[i * 2 + 5] = sphere.triangles[i + 2];
+		}
 
 
 	vao = new VAO();
@@ -177,8 +178,8 @@ void Sphere::Draw(Shader& shader)
 	positionmatrix = glm::translate(positionmatrix, position);
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "orientation"), 1, GL_FALSE, glm::value_ptr(orientation));
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "objectMatrix"), 1, GL_FALSE, glm::value_ptr(positionmatrix * orientation));
-	if(drawType == 0)glDrawElements(GL_TRIANGLES, indicesSize, GL_UNSIGNED_INT, 0);
-	else if (drawType == 1)glDrawElements(GL_LINES, indicesSize, GL_UNSIGNED_INT, 0);
+	if(drawType == 0) glDrawElements(GL_TRIANGLES, indicesSize, GL_UNSIGNED_INT, 0);
+	else if (drawType == 1) glDrawElements(GL_LINES, indicesSize, GL_UNSIGNED_INT, 0);
 }
 
 void Sphere::ChangePosition(glm::vec3 shift, GLfloat deg, glm::vec3 axis)

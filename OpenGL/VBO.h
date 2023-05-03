@@ -11,7 +11,6 @@ class VBO
 		void Bind();
 		void Unbind();
 		void Delete();
-
 };
 
 #endif
